@@ -3,10 +3,22 @@ package net.afferolab.s3;
 import net.afferolab.FileManager;
 import org.junit.Test;
 
-import java.io.File;
-import java.util.Optional;
-
 public class S3ManagerTest {
+
+
+    private S3Configuration getConfiguration() {
+        S3Configuration configuration = new S3Configuration();
+
+        configuration.setAccessKeyId("");
+        configuration.setSecretKey("");
+        configuration.setBaseFolder("");
+        configuration.setBucket("");
+        configuration.setBucketUrl("");
+        configuration.setRegion("");
+        configuration.setEndpoint("");
+
+        return configuration;
+    }
 
     @Test(expected = NullPointerException.class)
     public void configurationCanNotBeNull() {
@@ -16,18 +28,5 @@ public class S3ManagerTest {
         //Act
         FileManager manager = new S3Manager(configuration);
     }
-
-    @Test(expected = NullPointerException.class)
-    public void fileCanNotBeNull() {
-        //Init
-        S3Configuration configuration = new S3Configuration();
-        File file = null;
-
-        //Act
-        FileManager manager = new S3Manager(configuration);
-        manager.uploadFile(file, Optional.empty());
-
-    }
-
 
 }
